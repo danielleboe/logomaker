@@ -1,8 +1,9 @@
 const inquirer = require('inquirer');
-const fs = require('fs');
-const { Circle, Triangle, Square } = require('./lib/shapes');
+const fs = require('fs').promises;
+const { Circle, Triangle, Square } = require('./lib/shapes.js');
 
 
+//generate image
 const generateImage = ({ text, textColor, shape, shapeColor }) => {
     let shapeObj;
     switch (shape) {
@@ -18,7 +19,6 @@ const generateImage = ({ text, textColor, shape, shapeColor }) => {
     }
     shapeObj.setColor(shapeColor);
 
-
     return `
 <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
     ${shapeObj.render()}
@@ -31,7 +31,7 @@ inquirer.prompt([
         type: 'input',
         name: 'text',
         message: 'Enter text',
-        validate: input => input.length <= 3 || 'Text must be up to three characters.',s
+        validate: input => input.length <= 3 || 'Text must be up to three characters.',
     }, 
     {
         type: 'input',
@@ -42,7 +42,7 @@ inquirer.prompt([
         type: 'list',
         name: 'shape',
         message: 'Enter shape',
-        choice: [
+        choices: [
             'Square',
             'Circle',
             'Triangle',
@@ -54,14 +54,14 @@ inquirer.prompt([
         message: 'Enter shape color',
     },
 ])
-.then ((answers) => {
+.then((answers) => {
     const svgContent = generateImage(answers);
 
-    fs.writeFile('logo.svg', svgContent, (err) =>
-        err ? console.log(err) : console.log('Success!')
-        );
-    })
-    .catch((error) => {
-      console.error('Error generating image:', error);
-    });
-
+    return fs.writeFile('logo.svg', svgContent);
+})
+.then(() => {
+    console.log('Generated logo.svg');
+})
+.catch((error) => {
+    console.error('Error generating image:', error);
+});
