@@ -1,7 +1,7 @@
 
 # SVG Logo Maker
 
-This command-line application generates a simple logo in SVG format based on user input.
+This command-line application generates a simple logo in SVG format based on user input for text, color and shape selections.
 
 Repo URL: https://github.com/danielleboe/logomaker
 
