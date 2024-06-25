@@ -29,7 +29,7 @@ SO THAT I don't have to pay a graphic designer
 
 ## Video Walkthrough
 
-<video src="./lib/LogoMaker Demo.mp4" width="854" height="480" controls></video>
+[![Demo Video](./lib/demo%20screenshot.png)](./lib/LogoMaker%20Demo.mp4)
 
 ## Usage
 
