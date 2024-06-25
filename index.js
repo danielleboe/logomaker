@@ -57,7 +57,7 @@ inquirer.prompt([
 .then((answers) => {
     const svgContent = generateImage(answers);
 
-    return fs.writeFile('logo.svg', svgContent);
+    return fs.writeFile('./examples/logo.svg', svgContent);
 })
 .then(() => {
     console.log('Generated logo.svg');
